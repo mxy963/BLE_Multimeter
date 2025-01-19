@@ -1,0 +1,48 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin should be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.ble_multimeter"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    defaultConfig {
+        applicationId = "com.example.ble_multimeter"  // Define the unique application ID for your app
+        minSdk = 22  // Minimum SDK for your app
+        targetSdk = 34  // Target SDK for your app (latest stable SDK version)
+        versionCode = 1  // Increment this value for every new release
+        versionName = "1.0.0"  // Update this with the app's version number
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug  // Add your own signing config for release builds
+        }
+    }
+
+    // Ensuring ProGuard or R8 optimizations work correctly for release builds
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+flutter {
+    source = "../.."  // Path to Flutter SDK (adjust based on your project structure)
+}
